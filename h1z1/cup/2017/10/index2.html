@@ -38,6 +38,43 @@
         }
       };
 
+      var materialOptions = {
+        chart: {
+          title: 'Evolution des points obtenus par Team et par Game'
+        },
+        width: '100%',
+        height: '100%',
+        series: {
+          // Gives each series an axis name that matches the Y-axis below.
+          0: {axis: 'points'},
+          1: {axis: 'points'},
+          2: {axis: 'points'},
+          3: {axis: 'points'},
+          4: {axis: 'points'},
+          5: {axis: 'points'},
+          6: {axis: 'points'},
+          7: {axis: 'points'},
+          8: {axis: 'points'},
+          9: {axis: 'points'},
+          10: {axis: 'points'},
+          11: {axis: 'points'},
+          12: {axis: 'points'},
+          13: {axis: 'points'},
+          14: {axis: 'points'},
+          15: {axis: 'points'},
+          16: {axis: 'points'},
+          17: {axis: 'points'},
+          18: {axis: 'points'},
+          19: {axis: 'points'}
+        },
+        axes: {
+          // Adds labels to each axis; they don't have to match the axis names.
+          y: {
+            points: {label: 'Points'}
+          }
+        }
+      };
+
 
       function handleSampleDataQueryResponse(response) {
         if (response.isError()) {
@@ -48,14 +85,14 @@
         tableData = response.getDataTable();
         
         tableData.ng[0].label = 'Team';
-        tableData.ng[1].label = 'W1G1'; classicOptions.hAxis.ticks.push('W1G1');
-        tableData.ng[2].label = 'W1G2'; classicOptions.hAxis.ticks.push('W1G2');
-        tableData.ng[3].label = 'W1G3'; classicOptions.hAxis.ticks.push('W1G3');
-        tableData.ng[4].label = 'W1G4'; classicOptions.hAxis.ticks.push('W1G4');
-        tableData.ng[5].label = 'W2G1'; classicOptions.hAxis.ticks.push('W2G1');
-        tableData.ng[6].label = 'W2G2'; classicOptions.hAxis.ticks.push('W2G2');
-        tableData.ng[7].label = 'W2G3'; classicOptions.hAxis.ticks.push('W2G3');
-        tableData.ng[8].label = 'W2G4'; classicOptions.hAxis.ticks.push('W2G4');
+        tableData.ng[1].label = 'W1G1';
+        tableData.ng[2].label = 'W1G2';
+        tableData.ng[3].label = 'W1G3';
+        tableData.ng[4].label = 'W1G4';
+        tableData.ng[5].label = 'W2G1';
+        tableData.ng[6].label = 'W2G2';
+        tableData.ng[7].label = 'W2G3';
+        tableData.ng[8].label = 'W2G4';
 
 
         data = new google.visualization.DataTable();
@@ -79,7 +116,7 @@
         data.addRows(rows);
 
         linesChart = new google.visualization.LineChart(document.getElementById('lines_div'));
-        linesChart.draw(data, classicOptions);
+        linesChart.draw(data, materialOptions);
 
         // tableChart = new google.visualization.Table(document.getElementById('table_div'));
         // tableChart.draw(tableData, tableOptions);
