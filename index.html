@@ -54,8 +54,10 @@
 
     function drawTable() {
 
-      var queryString = encodeURIComponent('SELECT B,F,G,H,I,L,M,N,O LIMIT 21 OFFSET 0');
-      var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1-eagdAWmrYM0Q8Srp8CiCFvr5HaggIzdg9FtvjLvFM4/gviz/tq?sheet=Sheet1&headers=1&tq=' + queryString);
+      // var queryString = encodeURIComponent('SELECT B,F,G,H,I,L,M,N,O LIMIT 21 OFFSET 1');
+      var queryString = encodeURIComponent('SELECT B,F,G,H,I,L,M,N,O LIMIT 20 OFFSET 0');
+      // var queryString = encodeURIComponent('range=B2-B22');
+      var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1-eagdAWmrYM0Q8Srp8CiCFvr5HaggIzdg9FtvjLvFM4/gviz/tq?sheet=Sheet1&tq=' + queryString);
     
       // Send the query with a callback function.
       query.send(handleSampleDataQueryResponse);
@@ -94,7 +96,7 @@
     function handleSampleDataQueryResponse(response) {
 
       // var options = {'title':'H1Z1', 'width':800, 'height':600};
-      var options = {'title':'H1Z1', 'width':'100%', 'height':'100%'};
+      var options = {'title':'H1Z1', 'width':'100%', 'height':'30%'};
 
       if (response.isError()) {
         alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
@@ -103,8 +105,19 @@
 
       var data = response.getDataTable();
       var chart = new google.visualization.Table(document.getElementById('table_div'));
+
+      data.ng[0].label = 'Team';
+      data.ng[1].label = 'W1G1';
+      data.ng[2].label = 'W1G2';
+      data.ng[3].label = 'W1G3';
+      data.ng[4].label = 'W1G4';
+      data.ng[5].label = 'W2G1';
+      data.ng[6].label = 'W2G2';
+      data.ng[7].label = 'W2G3';
+      data.ng[8].label = 'W2G4';
+
       chart.draw(data, options);
-      console.log(data);
+      // console.log(data.ng[1].label);
     }
 
       // function selectHandler() {
