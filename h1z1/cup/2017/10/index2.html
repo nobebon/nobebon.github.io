@@ -17,6 +17,28 @@
         query.send(handleSampleDataQueryResponse);
       }
 
+
+      var classicOptions = {
+        title: 'Evolution des points obtenus par Team et par Game',
+        width: '100%',
+        height: '100%',
+        
+        series: {
+          0: {targetAxisIndex: 0},
+          1: {targetAxisIndex: 1}
+        },
+        vAxes: {0: {title: 'Points'}},
+        hAxis: {
+          ticks: []
+        },
+        vAxis: {
+          viewWindow: {
+            max: 30
+          }
+        }
+      };
+
+
       function handleSampleDataQueryResponse(response) {
         if (response.isError()) {
           alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
@@ -26,14 +48,14 @@
         tableData = response.getDataTable();
         
         tableData.ng[0].label = 'Team';
-        tableData.ng[1].label = 'W1G1';
-        tableData.ng[2].label = 'W1G2';
-        tableData.ng[3].label = 'W1G3';
-        tableData.ng[4].label = 'W1G4';
-        tableData.ng[5].label = 'W2G1';
-        tableData.ng[6].label = 'W2G2';
-        tableData.ng[7].label = 'W2G3';
-        tableData.ng[8].label = 'W2G4';
+        tableData.ng[1].label = 'W1G1'; classicOptions.hAxis.ticks.push('W1G1');
+        tableData.ng[2].label = 'W1G2'; classicOptions.hAxis.ticks.push('W1G2');
+        tableData.ng[3].label = 'W1G3'; classicOptions.hAxis.ticks.push('W1G3');
+        tableData.ng[4].label = 'W1G4'; classicOptions.hAxis.ticks.push('W1G4');
+        tableData.ng[5].label = 'W2G1'; classicOptions.hAxis.ticks.push('W2G1');
+        tableData.ng[6].label = 'W2G2'; classicOptions.hAxis.ticks.push('W2G2');
+        tableData.ng[7].label = 'W2G3'; classicOptions.hAxis.ticks.push('W2G3');
+        tableData.ng[8].label = 'W2G4'; classicOptions.hAxis.ticks.push('W2G4');
 
 
         data = new google.visualization.DataTable();
