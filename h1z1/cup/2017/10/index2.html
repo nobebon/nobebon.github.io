@@ -118,7 +118,8 @@
 
         data.addRows(rows);
 
-        linesChart = new google.visualization.Line(document.getElementById('lines_div'));
+        // linesChart = new google.visualization.LineChart(document.getElementById('lines_div'));
+        linesChart = new google.charts.Line(document.getElementById('lines_div'));
         linesChart.draw(data, materialOptions);
 
         // tableChart = new google.visualization.Table(document.getElementById('table_div'));
