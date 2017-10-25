@@ -104,7 +104,7 @@
       var data = response.getDataTable();
       var chart = new google.visualization.Table(document.getElementById('table_div'));
       chart.draw(data, options);
-      // console.log(data);
+      console.log(data);
     }
 
       // function selectHandler() {
@@ -118,6 +118,7 @@
   <body>
     <!--Div that will hold the pie chart-->
     <!-- <div id="chart_div" style="width:800; height:600"></div> -->
-    <div id="table_div" style="width:800; height:600"></div>
+    <!-- <div id="table_div" style="width:800; height:600"></div> -->
+    <div id="table_div"></div>
   </body>
 </html>
