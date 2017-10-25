@@ -1,124 +1,49 @@
-<html>
+  <html>
   <head>
-    <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       var data;
       var chart;
       var options = {'title':'H1Z1', 'width':'100%', 'height':'45%'};
 
-      // Load the Visualization API and the piechart package.
       google.charts.load('current', {'packages':['corechart', 'table']});
-
-      // Set a callback to run when the Google Visualization API is loaded.
-      // google.charts.setOnLoadCallback(drawChart);
       google.charts.setOnLoadCallback(drawTable);
 
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
-      // function drawChart() {
-
-      //   // Create our data table.
-      //   data = new google.visualization.DataTable();
-      //   data.addColumn('string', 'Topping');
-      //   data.addColumn('number', 'Slices');
-      //   data.addRows([
-      //     ['Mushrooms', 3],
-      //     ['Onions', 1],
-      //     ['Olives', 1],
-      //     ['Zucchini', 1],
-      //     ['Pepperoni', 2]
-      //   ]);
-
-      //   // Set chart options
-      //   var options = {'title':'How Much Pizza I Ate Last Night',
-      //                  'width':800,
-      //                  'height':600};
-
-      //   // Instantiate and draw our chart, passing in some options.
-      //   chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-      //   // google.visualization.events.addListener(chart, 'select', selectHandler);
-      //   chart.draw(data, options);
-      // }
-
-
-    // function drawChart() {
-    //   var queryString = encodeURIComponent('SELECT B, A LIMIT 20 OFFSET 1');
-
-    //   var query = new google.visualization.Query(
-    //       'https://docs.google.com/spreadsheets/d/1-eagdAWmrYM0Q8Srp8CiCFvr5HaggIzdg9FtvjLvFM4/gviz/tq?sheet=Sheet1&headers=1&tq=' + queryString);
-    //   query.send(handleSampleDataQueryResponse);
-    // }
-
-
-
-    function drawTable() {
-
-      // var queryString = encodeURIComponent('SELECT B,F,G,H,I,L,M,N,O LIMIT 21 OFFSET 1');
-      var queryString = encodeURIComponent('SELECT B,F,G,H,I,L,M,N,O LIMIT 20 OFFSET 0');
-      // var queryString = encodeURIComponent('range=B2-B22');
-      var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1-eagdAWmrYM0Q8Srp8CiCFvr5HaggIzdg9FtvjLvFM4/gviz/tq?sheet=Sheet1&tq=' + queryString);
-    
-      // Send the query with a callback function.
-      query.send(handleSampleDataQueryResponse);
-
-      // var data = new google.visualization.DataTable();
-      // data.addColumn('string', 'Name');
-      // data.addColumn('number', 'Salary');
-      // data.addColumn('boolean', 'Full Time');
-      // data.addRows(5);
-      // data.setCell(0, 0, 'John');
-      // data.setCell(0, 1, 10000, '$10,000');
-      // data.setCell(0, 2, true);
-      // data.setCell(1, 0, 'Mary');
-      // data.setCell(1, 1, 25000, '$25,000');
-      // data.setCell(1, 2, true);
-      // data.setCell(2, 0, 'Steve');
-      // data.setCell(2, 1, 8000, '$8,000');
-      // data.setCell(2, 2, false);
-      // data.setCell(3, 0, 'Ellen');
-      // data.setCell(3, 1, 20000, '$20,000');
-      // data.setCell(3, 2, true);
-      // data.setCell(4, 0, 'Mike');
-      // data.setCell(4, 1, 12000, '$12,000');
-      // data.setCell(4, 2, false);
-
-      // var table = new google.visualization.Table(document.getElementById('table_div'));
-      // table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
-
-      // google.visualization.events.addListener(table, 'select', function() {
-      //   var row = table.getSelection()[0].row;
-      //   alert('You selected ' + data.getValue(row, 0));
-      // });
-    }
-
-
-    function handleSampleDataQueryResponse(response) {
-
-      // var options = {'title':'H1Z1', 'width':800, 'height':600};
-
-      if (response.isError()) {
-        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-        return;
+      
+      function drawTable() {
+        var queryString = encodeURIComponent('SELECT B,F,G,H,I,L,M,N,O LIMIT 20 OFFSET 0');
+        var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1-eagdAWmrYM0Q8Srp8CiCFvr5HaggIzdg9FtvjLvFM4/gviz/tq?sheet=Sheet1&tq=' + queryString);
+        query.send(handleSampleDataQueryResponse);
       }
 
-      data = response.getDataTable();
-      chart = new google.visualization.Table(document.getElementById('table_div'));
 
-      data.ng[0].label = 'Team';
-      data.ng[1].label = 'W1G1';
-      data.ng[2].label = 'W1G2';
-      data.ng[3].label = 'W1G3';
-      data.ng[4].label = 'W1G4';
-      data.ng[5].label = 'W2G1';
-      data.ng[6].label = 'W2G2';
-      data.ng[7].label = 'W2G3';
-      data.ng[8].label = 'W2G4';
+      function handleSampleDataQueryResponse(response) {
+        if (response.isError()) {
+          alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+          return;
+        }
 
-      chart.draw(data, options);
-      // console.log(data.ng[1].label);
-    }
+        data = response.getDataTable();
+        chart = new google.visualization.Table(document.getElementById('table_div'));
+
+        data.ng[0].label = 'Team';
+        data.ng[1].label = 'W1G1';
+        data.ng[2].label = 'W1G2';
+        data.ng[3].label = 'W1G3';
+        data.ng[4].label = 'W1G4';
+        data.ng[5].label = 'W2G1';
+        data.ng[6].label = 'W2G2';
+        data.ng[7].label = 'W2G3';
+        data.ng[8].label = 'W2G4';
+
+        chart.draw(data, options);
+        // console.log(data.ng[1].label);
+
+        // google.visualization.events.addListener(table, 'select', function() {
+        //   var row = table.getSelection()[0].row;
+        //   alert('You selected ' + data.getValue(row, 0));
+        // });
+      }
 
       // function selectHandler() {
       //   var selectedItem = chart.getSelection()[0];
@@ -129,9 +54,6 @@
     </script>
   </head>
   <body>
-    <!--Div that will hold the pie chart-->
-    <!-- <div id="chart_div" style="width:800; height:600"></div> -->
-    <!-- <div id="table_div" style="width:800; height:600"></div> -->
     <div id="table_div"></div>
   </body>
 </html>
