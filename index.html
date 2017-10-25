@@ -15,30 +15,55 @@
       // Callback that creates and populates a data table,
       // instantiates the pie chart, passes in the data and
       // draws it.
-      function drawChart() {
+      // function drawChart() {
 
-        // Create our data table.
-        data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
-        data.addRows([
-          ['Mushrooms', 3],
-          ['Onions', 1],
-          ['Olives', 1],
-          ['Zucchini', 1],
-          ['Pepperoni', 2]
-        ]);
+      //   // Create our data table.
+      //   data = new google.visualization.DataTable();
+      //   data.addColumn('string', 'Topping');
+      //   data.addColumn('number', 'Slices');
+      //   data.addRows([
+      //     ['Mushrooms', 3],
+      //     ['Onions', 1],
+      //     ['Olives', 1],
+      //     ['Zucchini', 1],
+      //     ['Pepperoni', 2]
+      //   ]);
 
-        // Set chart options
-        var options = {'title':'How Much Pizza I Ate Last Night',
-                       'width':800,
-                       'height':600};
+      //   // Set chart options
+      //   var options = {'title':'How Much Pizza I Ate Last Night',
+      //                  'width':800,
+      //                  'height':600};
 
-        // Instantiate and draw our chart, passing in some options.
-        chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-        // google.visualization.events.addListener(chart, 'select', selectHandler);
-        chart.draw(data, options);
+      //   // Instantiate and draw our chart, passing in some options.
+      //   chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+      //   // google.visualization.events.addListener(chart, 'select', selectHandler);
+      //   chart.draw(data, options);
+      // }
+
+
+    function drawChart() {
+      var queryString = encodeURIComponent('SELECT B, A LIMIT 20 OFFSET 1');
+
+      var query = new google.visualization.Query(
+          'https://docs.google.com/spreadsheets/d/1-eagdAWmrYM0Q8Srp8CiCFvr5HaggIzdg9FtvjLvFM4/gviz/tq?sheet=Sheet1&headers=1&tq=' + queryString);
+      query.send(handleSampleDataQueryResponse);
+    }
+
+    function handleSampleDataQueryResponse(response) {
+
+      var options = {'title':'H1Z1', 'width':800, 'height':600};
+
+      if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+        return;
       }
+
+      var data = response.getDataTable();
+      var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+      console.log(data);
+    }
+
 
       // function selectHandler() {
       //   var selectedItem = chart.getSelection()[0];
