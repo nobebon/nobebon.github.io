@@ -95,11 +95,12 @@
 
             // linesDataView = new google.visualization.DataView(tableData);
             linesDataView = new google.visualization.DataView(linesData);
+            console.log(linesDataView);
             // console.log(idx);
             // linesDataView.hideRows([parseInt(idx)]);
             linesDataView.hideColumns([parseInt(idx)]);
-            // console.log(linesDataView);
-
+            console.log(linesDataView);
+            
             linesChart.draw(linesDataView, linesOptions);
 
           }
