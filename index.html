@@ -54,7 +54,7 @@
 
     function drawTable() {
 
-      var queryString = encodeURIComponent('SELECT B LIMIT 21 OFFSET 0');
+      var queryString = encodeURIComponent('SELECT B,F,G,H,I,L,M,N,O LIMIT 21 OFFSET 0');
       var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1-eagdAWmrYM0Q8Srp8CiCFvr5HaggIzdg9FtvjLvFM4/gviz/tq?sheet=Sheet1&headers=1&tq=' + queryString);
     
       // Send the query with a callback function.
