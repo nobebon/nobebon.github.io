@@ -54,11 +54,10 @@
           rows.push(row);
         }
 
-console.log(rows);
-
-console.log(data);
         data.addRows(rows);
-console.log(data);
+
+        linesChart = new google.visualization.LineChart(document.getElementById('lines_div'));
+        linesChart.draw(data, linesOptions);
 
         // tableChart = new google.visualization.Table(document.getElementById('table_div'));
         // tableChart.draw(tableData, tableOptions);
@@ -143,7 +142,6 @@ console.log(data);
     </script>
   </head>
   <body>
-    <div id="table_div" style="width:100%; height:45%"></div>
-    <div id="lines_div" style="width:100%; height:55%"></div>
+    <div id="lines_div" style="width:100%; height:100%"></div>
   </body>
 </html>
