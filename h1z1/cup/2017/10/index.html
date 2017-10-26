@@ -2,11 +2,9 @@
   <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      var tableData, linesData;
-      var tableChart, linesChart;
-      var linesDataView;
+      var tableData;
+      var tableChart;
       var tableOptions = {'width': '100%', 'height': '100%'};
-      var linesOptions = {'width': '100%', 'height': '100%'};
 
       google.charts.load('current', {'packages':['corechart', 'table']});
       google.charts.setOnLoadCallback(loadData);
@@ -37,88 +35,22 @@
 
         tableChart = new google.visualization.Table(document.getElementById('table_div'));
         tableChart.draw(tableData, tableOptions);
-
-
-        linesData = new google.visualization.DataTable();
-        linesData.addColumn('string', tableData.ng[0].label);
-        var linesDataRows = [];
-        for (var i = 0; i < tableData.hc.length; i++) {
-          linesData.addColumn('number', tableData.hc[i][0].Cf);
-        }
-        for (var i = 1; i < tableData.ng.length; i++) {
-          var linesDataRow = [];
-          linesDataRow.push(tableData.ng[i].label);
-          for (var j = 0; j < tableData.og.length; j++) {
-            linesDataRow.push(tableData.og[j].c[i]);
-          }
-          linesDataRows.push(linesDataRow);
-        }
-        linesData.addRows(linesDataRows);
-
-
-        linesChart = new google.visualization.LineChart(document.getElementById('lines_div'));
-        linesChart.draw(linesData, linesOptions);
-        // console.log(data.ng[1].label);
-
-        // google.visualization.events.addListener(table, 'select', function() {
-        //   var row = table.getSelection()[0].row;
-        //   alert('You selected ' + data.getValue(row, 0));
-        // });
-
-        // linesDataView = linesData;
-
-        google.visualization.events.addListener(linesChart, 'click', function(evt) {
-          var legendPrefix = "legendentry#";
-          // console.log(evt);
-          // console.log(evt.targetID);
-          // console.log(evt.targetID.indexOf(legendPrefix));
-          if (evt.targetID.indexOf(legendPrefix) == 0) {
-            // index of clicked legend entry
-            var idx = evt.targetID.substring(legendPrefix.length);
-            // console.log(evt.targetID.substring(legendPrefix.length));
-
-            // // Show line
-            // if (linesOptions.series[idx].lineDashStyle && linesOptions.series[idx].lineDashStyle[0] == 0) {
-            //     linesOptions.series[idx].lineDashStyle = linesOptions.series[idx].originalLineDashStyle;
-            // }
-            // // Hide line
-            // // ( Set the first value of lineDashStyle as 0,
-            // //   and second as something that greater than 0 )
-            // else {  
-            //     linesOptions.series[idx].originalLineDashStyle = linesOptions.series[idx].lineDashStyle;
-            //     linesOptions.series[idx].lineDashStyle = [0, 1];
-            // }
-
-            // linesChart.draw(linesData, linesOptions);
  
-            // console.log("index: " + idx);
-
-            // linesDataView = new google.visualization.DataView(tableData);
-            linesDataView = new google.visualization.DataView(linesData);
-            console.log(linesDataView);
-            // console.log(idx);
-            // linesDataView.hideRows([parseInt(idx)]);
-            linesDataView.hideColumns([parseInt(idx)]);
-            console.log(linesDataView);
-            
-            linesChart.draw(linesDataView, linesOptions);
-
-          }
-
-        });
-
       }
-
-      // function selectHandler() {
-      //   var selectedItem = chart.getSelection()[0];
-      //   var value = data.getValue(selectedItem.row, 0);
-      //   alert('The user selected ' + value);
-      // }
 
     </script>
   </head>
   <body>
-    <div id="table_div" style="width:100%; height:45%"></div>
-    <div id="lines_div" style="width:100%; height:55%"></div>
+    <div id="title" style="width:100%; height:15%">
+      <h1>H1Z1 Tournament : France October 2017 Results</h1>
+    </div>
+    <div id="table_div" style="width:100%; height:50%"></div>
+    <div id="links" style="width:100%; height:35%">
+      <ul>
+        <li><a href="./team-points-per-game.html">Evolution des points gagnés par Game</a></li>
+        <li><a href="./index.html">en attente</a></li>
+        <li><a href="./index.html">en attente</a></li>
+      </ul>
+    </div>
   </body>
 </html>
