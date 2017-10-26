@@ -2,12 +2,12 @@
   <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      var data;
+      var tableData, data;
       var chart;
       // var options = {'width': '100%', 'height': '100%'};
       var options = {
         chart: {
-          title: 'Evolution des points obtenus par Team et par Game'
+          title: 'Evolution du classement par Team et par Game'
         },
         width: '100%',
         height: '100%',
@@ -58,30 +58,59 @@
           return;
         }
 
-        data = res.getDataTable();
+        tableData = res.getDataTable();
         
-        data.ng[0].label = 'Team';
-        for (var i = 1; i < data.ng.length; i++) {
+        tableData.ng[0].label = 'Team';
+        for (var i = 1; i < tableData.ng.length; i++) {
           var weekNumber = Math.floor(parseInt(i - 1) / 4) + 1;
           var gameNumber = parseInt(i - 1) % 4 + 1;
-          data.ng[i].label = "W" + weekNumber + "G" + gameNumber;
+          tableData.ng[i].label = "W" + weekNumber + "G" + gameNumber;
         }
 
-        for (var i = 0; i < data.og.length; i++) {
-          for (var j = 2; j < data.og[i].c.length; j++) {
-            data.og[i].c[j].v = data.og[i].c[j].v + data.og[i].c[j-1].v;
-            data.og[i].c[j].f = String(data.og[i].c[j].v);
+
+
+
+        for (var i = 0; i < tableData.og.length; i++) {
+          for (var j = 2; j < tableData.og[i].c.length; j++) {
+            tableData.og[i].c[j].v = tableData.og[i].c[j].v + tableData.og[i].c[j-1].v;
+            tableData.og[i].c[j].f = String(tableData.og[i].c[j].v);
           }
         }
 
-        for (var i = 1; i < data.ng.length; i++) {
-          var classement = data.getSortedRows([{column: i, desc:true}]);
+        for (var i = 1; i < tableData.ng.length; i++) {
+          var classement = tableData.getSortedRows([{column: i, desc:true}]);
           for (var j = 0; j < classement.length; j++) {
-            data.og[classement[j]].c[i]['points'] = data.og[classement[j]].c[i].v;
-            data.og[classement[j]].c[i].v = j + 1;
-            data.og[classement[j]].c[i].f = String(data.og[classement[j]].c[i].v);
+            tableData.og[classement[j]].c[i]['points'] = tableData.og[classement[j]].c[i].v;
+            tableData.og[classement[j]].c[i].v = j + 1;
+            tableData.og[classement[j]].c[i].f = String(tableData.og[classement[j]].c[i].v);
           }
         }
+
+
+
+
+
+        data = new google.visualization.DataTable();
+        data.addColumn('string', 'Game');
+        
+        for (var i = 0; i < tableData.og.length; i++) {
+          data.addColumn('number', tableData.og[i].c[0].v);
+        }
+
+        var rows = [];
+        for (var i = 1; i < tableData.ng.length; i++) {
+          var row = [];
+          row.push(tableData.ng[i].label);
+          for (var j = 0; j < tableData.og.length; j++) {
+            row.push(tableData.og[j].c[i]);
+          }
+
+          rows.push(row);
+        }
+
+        data.addRows(rows);
+
+
 
         // chart = new google.visualization.Table(document.getElementById('chart_div'));
         chart = new google.charts.Line(document.getElementById('chart_div'));
