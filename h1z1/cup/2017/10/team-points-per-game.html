@@ -51,7 +51,7 @@
         },
         axes: {
           y: {
-            points: {label: 'Points (par Team et par Game)'}
+            points: {label: 'Points'}
           }
         }
       };
@@ -77,7 +77,7 @@
 
 
         data = new google.visualization.DataTable();
-        data.addColumn('string', 'Week/Game');
+        data.addColumn('string', 'Game');
         
         for (var i = 0; i < tableData.og.length; i++) {
           data.addColumn('number', tableData.og[i].c[0].v);

@@ -30,6 +30,22 @@
           data.ng[i].label = "W" + weekNumber + "G" + gameNumber;
         }
 
+        for (var i = 0; i < data.og.length; i++) {
+          for (var j = 2; j < data.og[i].c.length; j++) {
+            data.og[i].c[j].v = data.og[i].c[j].v + data.og[i].c[j-1].v;
+            data.og[i].c[j].f = String(data.og[i].c[j].v);
+          }
+        }
+
+        for (var i = 1; i < data.ng.length; i++) {
+          var classement = data.getSortedRows([{column: i, desc:true}]);
+          for (var j = 0; j < classement.length; j++) {
+            data.og[classement[j]].c[i]['points'] = data.og[classement[j]].c[i].v;
+            data.og[classement[j]].c[i].v = j + 1;
+            data.og[classement[j]].c[i].f = String(data.og[classement[j]].c[i].v);
+          }
+        }
+
         chart = new google.visualization.Table(document.getElementById('chart_div'));
         chart.draw(data, options);
       }
