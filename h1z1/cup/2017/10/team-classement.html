@@ -14,44 +14,49 @@
         colors: ['#3366cc', '#dc3912', '#ff9900', '#109618', '#990099', '#0099c6', '#dd4477', '#66aa00', '#b82e2e', '#316395', '#994499', '#22aa99', '#aaaa11', '#6633cc', '#e67300', '#8b0707', '#651067', '#329262', '#5574a6', '#3b3eac'],        
         // , '#b77322', '#16d620', '#b91383', '#f4359e', '#9c5935', '#a9c413', '#2a778d', '#668d1c', '#bea413', '#0c5922', '#743411']
         selectionMode: 'multiple',
-        series: {
-          0: {axis: 'classement'},
-          1: {axis: 'classement'},
-          2: {axis: 'classement'},
-          3: {axis: 'classement'},
-          4: {axis: 'classement'},
-          5: {axis: 'classement'},
-          6: {axis: 'classement'},
-          7: {axis: 'classement'},
-          8: {axis: 'classement'},
-          9: {axis: 'classement'},
-          10: {axis: 'classement'},
-          11: {axis: 'classement'},
-          12: {axis: 'classement'},
-          13: {axis: 'classement'},
-          14: {axis: 'classement'},
-          15: {axis: 'classement'},
-          16: {axis: 'classement'},
-          17: {axis: 'classement'},
-          18: {axis: 'classement'},
-          19: {axis: 'classement'}
-        },
-        axes: {
-          y: {
-            classement: {
-              label: 'Classement',
-              direction: -1,
-              minValue: 0
-            }
-          }
-        },
+        // series: {
+        //   0: {axis: 'classement'},
+        //   1: {axis: 'classement'},
+        //   2: {axis: 'classement'},
+        //   3: {axis: 'classement'},
+        //   4: {axis: 'classement'},
+        //   5: {axis: 'classement'},
+        //   6: {axis: 'classement'},
+        //   7: {axis: 'classement'},
+        //   8: {axis: 'classement'},
+        //   9: {axis: 'classement'},
+        //   10: {axis: 'classement'},
+        //   11: {axis: 'classement'},
+        //   12: {axis: 'classement'},
+        //   13: {axis: 'classement'},
+        //   14: {axis: 'classement'},
+        //   15: {axis: 'classement'},
+        //   16: {axis: 'classement'},
+        //   17: {axis: 'classement'},
+        //   18: {axis: 'classement'},
+        //   19: {axis: 'classement'}
+        // },
+        // axes: {
+        //   y: {
+        //     classement: {
+        //       label: 'Classement',
+        //       direction: -1,
+        //       minValue: 0,
+        //       viewWindow: {
+        //         min: 0,
+        //         max: 20
+        //       }
+        //     }
+        //   }
+        // },
         vAxis: {
+          title: "Classement",
           viewWindow: {
             min: 0,
             max: 20
-          }
+          },
+          direction: -1
         },
-        direction: -1
       };
 
       google.charts.load('current', {'packages':['corechart', 'table', 'line']});
