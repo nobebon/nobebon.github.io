@@ -130,7 +130,7 @@
 
         // chart = new google.visualization.Table(document.getElementById('chart_div'));
         chart = new google.charts.Line(document.getElementById('chart_div'));
-        chart.draw(data, options);
+        chart.draw(data, google.charts.Line.convertOptions(options));
       }
     </script>
   </head>
