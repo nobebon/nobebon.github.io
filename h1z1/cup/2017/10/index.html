@@ -2,9 +2,9 @@
   <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      var tableData;
-      var tableChart;
-      var tableOptions = {'width': '100%', 'height': '100%'};
+      var data;
+      var chart;
+      var options = {'width': '100%', 'height': '100%'};
 
       google.charts.load('current', {'packages':['corechart', 'table']});
       google.charts.setOnLoadCallback(loadData);
@@ -12,39 +12,32 @@
       function loadData() {
         var queryString = encodeURIComponent('SELECT B,F,G,H,I,L,M,N,O LIMIT 20 OFFSET 0');
         var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1-eagdAWmrYM0Q8Srp8CiCFvr5HaggIzdg9FtvjLvFM4/gviz/tq?sheet=Sheet1&tq=' + queryString);
-        query.send(handleSampleDataQueryResponse);
+        query.send(handleDataQueryResponse);
       }
 
-      function handleSampleDataQueryResponse(response) {
-        if (response.isError()) {
-          alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+      function handleDataQueryResponse(res) {
+        if (res.isError()) {
+          alert('Error in query: ' + res.getMessage() + ' ' + res.getDetailedMessage());
           return;
         }
 
-        tableData = response.getDataTable();
+        data = res.getDataTable();
         
-        tableData.ng[0].label = 'Team';
-        tableData.ng[1].label = 'W1G1';
-        tableData.ng[2].label = 'W1G2';
-        tableData.ng[3].label = 'W1G3';
-        tableData.ng[4].label = 'W1G4';
-        tableData.ng[5].label = 'W2G1';
-        tableData.ng[6].label = 'W2G2';
-        tableData.ng[7].label = 'W2G3';
-        tableData.ng[8].label = 'W2G4';
+        data.ng[0].label = 'Team';
+        for (var i = 1; i < table.ng.length; i++) {
+          data.ng[i].label = "W" + Math.floor(parseInt(i) / 4 + 1) + "G" + parseInt(i) % 4;
+        }
 
-        tableChart = new google.visualization.Table(document.getElementById('table_div'));
-        tableChart.draw(tableData, tableOptions);
- 
+        chart = new google.visualization.Table(document.getElementById('chart_div'));
+        chart.draw(data, options);
       }
-
     </script>
   </head>
   <body>
     <div id="title" style="width:100%; height:15%">
       <h1>H1Z1 Tournament : France October 2017 Results</h1>
     </div>
-    <div id="table_div" style="width:100%; height:50%"></div>
+    <div id="chart_div" style="width:100%; height:50%"></div>
     <div id="links" style="width:100%; height:35%">
       <ul>
         <li><a href="./team-points-per-game.html">Evolution des points gagnés par Game</a></li>
