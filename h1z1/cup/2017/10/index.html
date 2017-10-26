@@ -26,7 +26,7 @@
         data.ng[0].label = 'Team';
         for (var i = 1; i < data.ng.length; i++) {
           var weekNumber = Math.floor(parseInt(i - 1) / 4) + 1;
-          var gameNumber = parseInt(i) % 4 + 1;
+          var gameNumber = parseInt(i - 1) % 4 + 1;
           data.ng[i].label = "W" + weekNumber + "G" + gameNumber;
         }
 
