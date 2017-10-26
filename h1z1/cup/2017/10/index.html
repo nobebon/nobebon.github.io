@@ -25,7 +25,9 @@
         
         data.ng[0].label = 'Team';
         for (var i = 1; i < data.ng.length; i++) {
-          data.ng[i].label = "W" + (Math.floor(parseInt(i - 1) / 4 + 1) + "G" + (parseInt(i) % 4 + 1);
+          var weekNumber = Math.floor(parseInt(i - 1) / 4) + 1;
+          var gameNumber = parseInt(i) % 4 + 1;
+          data.ng[i].label = "W" + weekNumber + "G" + gameNumber;
         }
 
         chart = new google.visualization.Table(document.getElementById('chart_div'));
