@@ -450,7 +450,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       selectors: [["app-root"]],
       decls: 30,
       vars: 0,
-      consts: [["href", "https://twitter.com/_n_o_b_e_"], ["href", "https://getbootstrap.com"], ["href", "https://angular.io"], ["href", "https://valor-software.com/ng2-charts/"], ["href", "https://chartjs.org"], ["href", "https://www.npmjs.com/package/chartjs-plugin-datalabels"], ["target", "_blank", "href", "https://www.reddit.com/r/FortniteCompetitive/comments/f86wjq/dreamhack_anaheim_2020_ft_fortnite_statistics_by/"], [2, "width", "100%"]],
+      consts: [["target", "_blank", "href", "https://twitter.com/_n_o_b_e_"], ["target", "_blank", "href", "https://getbootstrap.com"], ["target", "_blank", "href", "https://angular.io"], ["target", "_blank", "href", "https://valor-software.com/ng2-charts/"], ["target", "_blank", "href", "https://chartjs.org"], ["target", "_blank", "href", "https://www.npmjs.com/package/chartjs-plugin-datalabels"], ["target", "_blank", "href", "https://www.reddit.com/r/FortniteCompetitive/comments/f86wjq/dreamhack_anaheim_2020_ft_fortnite_statistics_by/"], [2, "width", "100%"]],
       template: function AppComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
